@@ -1,0 +1,51 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+}
+
+.inputContainer, .outputContainer {
+  margin: 0 auto;
+  width: 80%;  
+  background: 
+}
+
+.inputContainer {
+  text-align: center;
+  background: #E5BCD2;
+}
+
+.inputContainer input {
+  width: 50%;
+  text-align: center;  
+}
+
+#generate {
+  background: #90EE90;
+  border: none;
+  padding: 5px;
+}
+
+#stop {
+  background: #E85F4D;
+  border: none;
+  padding: 5px;
+}
+
+.item {
+  padding: 20px;
+  padding-left: 100px;
+  position: relative;
+}
+
+.item button {
+  float: right;
+  margin-right: 100px;
+}
+
+.item input {
+  position: absolute;
+}

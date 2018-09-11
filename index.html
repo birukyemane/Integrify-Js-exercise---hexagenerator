@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hexadecimal Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <!--<script src="main.js"></script> -->
+</head>
+<body>
+  
+  <div class="inputContainer">
+    <h1>Hexadecimal Color Generator</h1>
+    <input id="inputNum" type="text" placeholder="Enter a number greater than 5...">
+    <button id='generate'>Generate</button>
+    <button id='stop'>Stop</button> <br/>
+    <small>Colors change peoples emotions so put meaningful color on your site</small>
+  </div>
+  <div id = "container" class="outputContainer"></div>
+  <script>
+
+  function elt(type, ...children) {
+    let node = document.createElement(type);
+    for (let child of children) {
+      if (typeof child != "string") node.appendChild(child);
+      else node.appendChild(document.createTextNode(child));
+    }
+    return node;
+  }
+
+  function clearPalette () {    
+    let paletteContainer = document.querySelector('#container');    
+    paletteContainer.innerHTML = ''; 
+  }
+
+  function randomHexaNumberGenerator(){
+    let colors = [];
+    let num = 5;
+    if (document.querySelector('#inputNum').value < 5) alert('Minimun no of color generated is 5');
+    else num = document.querySelector('#inputNum').value; 
+    for (let i = 0; i<num; i++){
+      let randomNum = Math.floor(Math.random()* 10000000);
+      colors.push(`#${randomNum.toString(16)}`);
+    }
+    clearPalette();
+    generatePalette(colors);
+  }
+  
+  function generatePalette (colors) {
+      for (let color of colors){
+        let item = elt('div', color, elt('button', 'copy'));
+        let colorInput = elt('input'); // used for copy pasting. we hide it. 
+        colorInput.value = color;
+        item.appendChild(colorInput);
+        item.className = 'item'
+        item.style.background = color;        
+        document.querySelector('#container').appendChild(item);
+      }  
+  }
+
+  function copyColor(e){  
+    e.target.nextSibling.select();
+    document.execCommand('copy');    
+  }
+
+  let button = document.querySelector("#generate");
+  button.addEventListener("click", randomHexaNumberGenerator);
+
+  let container = document.querySelector("#container");
+  container.addEventListener("click", copyColor);  
+  
+  </script>
+</body>
+</html>
